@@ -11,20 +11,20 @@ datasource db {
 }
 
 model Student {
-  id                  Int                  @id @default(autoincrement())
-  name                String
-  email               String               @unique
-  enrollmentNumber    String               @unique
-  batch               Batch                @relation(fields: [batchId], references: [id])
-  batchId             Int
-  academicPerformances AcademicPerformance[]
+  id                     Int                     @id @default(autoincrement())
+  name                   String
+  email                  String                  @unique
+  enrollmentNumber       String                  @unique
+  batch                  Batch                   @relation(fields: [batchId], references: [id])
+  batchId                Int
+  academicPerformances   AcademicPerformance[]
   hackathonParticipations HackathonParticipation[]
-  paperPresentations  PaperPresentation[]
-  coreCoursesExcellence CoreCoursePerformance[]
-  overallScore        Float                @default(0)
-  rank                Int?
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
+  paperPresentations     PaperPresentation[]
+  coreCoursesExcellence  CoreCoursePerformance[]
+  overallScore           Float                   @default(0)
+  rank                   Int?
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
 }
 
 model Batch {
@@ -51,15 +51,15 @@ model AcademicPerformance {
 }
 
 model HackathonParticipation {
-  id        Int      @id @default(autoincrement())
-  student   Student  @relation(fields: [studentId], references: [id])
+  id        Int            @id @default(autoincrement())
+  student   Student        @relation(fields: [studentId], references: [id])
   studentId Int
   name      String
   level     HackathonLevel
   rank      Int?
   date      DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 }
 
 enum HackathonLevel {
@@ -69,14 +69,14 @@ enum HackathonLevel {
 }
 
 model PaperPresentation {
-  id        Int      @id @default(autoincrement())
-  student   Student  @relation(fields: [studentId], references: [id])
-  studentId Int
-  title     String
+  id         Int      @id @default(autoincrement())
+  student    Student  @relation(fields: [studentId], references: [id])
+  studentId  Int
+  title      String
   conference String
-  date      DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  date       DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model CoreCoursePerformance {
@@ -94,10 +94,10 @@ model CoreCoursePerformance {
 }
 
 model Course {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  isCore    Boolean  @default(false)
+  id           Int                    @id @default(autoincrement())
+  name         String                 @unique
+  isCore       Boolean                @default(false)
   performances CoreCoursePerformance[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
 }
